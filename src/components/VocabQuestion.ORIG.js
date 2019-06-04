@@ -10,19 +10,13 @@ class VocabQuestion extends Component {
         this.handleDataset = this.handleDataset.bind(this);
         this.handleProgress = this.handleProgress.bind(this);
         this.getCurrentAudio = this.getCurrentAudio.bind(this);
-        this.setTemparrayObj = this.setTemparrayObj.bind(this);
     }
     state = {
         dataset: 0,
-        // questionsData[this.state.dataset].answers
-        // tempArray: ["1","2","3"],
-        tempArray: [],
-        percentage: 0,
-        // highlight: {border: "10px solid white;"}
+        tempArray: ["1", "2", "3"],
+        percentage: 0
     }
 
-
-    
 
     getCurrentAudio() {
         console.log("in get audio")
@@ -55,31 +49,6 @@ class VocabQuestion extends Component {
         })
     }
 
-    handleHighlight() {
-
-    }
-    setTemparrayObj() {
-        let arrayObj = [];
-        let wordArray = [];
-        arrayObj = [...arrayObj, ...questionsData[this.state.dataset].answers]
-        for(const key in arrayObj) {
-           wordArray.push(arrayObj[key].word) 
-        }
-        this.setState({
-            tempArray: wordArray
-        })
-
-        // this.setState({
-        //     tempArray: [ ...this.state.tempArray, ...questionsData[this.state.dataset].answers]
-            
-        //   })
-        // this.setState(state => {
-
-        // })
-          console.log(" array word : " + wordArray)
-          console.log(" state array : " + this.state.tempArray)
-    }
-
    
 
     render() {
@@ -94,16 +63,14 @@ class VocabQuestion extends Component {
                 */}
                 <audio src={this.getCurrentAudio()} autoPlay/>
                 {/* {this.getCurrentAudio()}; */}
-                {this.setTemparrayObj()}
-                <div className="flexContainer">
-                    {/* <ul className="flexContainer"> */}
+                <ul className="flexContainer">
                     {/* 
-                        Need to swap out the temp arrayObj for 
+                        Need to swap out the temp array for 
                         questionsData object at index [state.dataset]
                     */}
                     {this.state.tempArray.map((value, index) => {
                         return (
-                            <div className="flexItem" key={index}>
+                            <li className="flexItem" key={index}>
                                 <VocabItem 
                                     value={value} 
                                     questionsData={questionsData}
@@ -113,11 +80,10 @@ class VocabQuestion extends Component {
                                     handleProgress={this.handleProgress}
                                     currentDatasetData={questionsData[this.state.dataset]}
                                     />
-                            </div>)
+                            </li>)
                     })}
-                {/* </ul> */}
-                </div>
-                <ProgressBar className="progressBar" percentage={this.state.percentage}/>
+                </ul>
+                <ProgressBar percentage={this.state.percentage}/>
             </div>
         )
     }
