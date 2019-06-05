@@ -20,6 +20,7 @@ function App() {
         </a>
         <img src={header_bottom} className="Header-Bottom-Bar" alt="header_bottom" />
       </header>
+      
       <VocabQuestion />
     </div>
   );

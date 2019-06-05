@@ -2,8 +2,14 @@ import React from 'react';
 
 const ProgressBar = (props) => {
     return (
-        <div className="progress-bar">
-          <Filler percentage={props.percentage} />
+        <div >
+          <div className="progress-bar-text">
+          <h1>Level 1 Screener</h1>
+          <h2>Section 1 Progress:</h2>
+          </div>
+          <div className="progress-bar">
+            <Filler percentage={props.percentage} />
+          </div>
         </div>
       )
   }

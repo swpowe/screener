@@ -31,7 +31,6 @@ class VocabQuestion extends Component {
     
 
     getCurrentAudio() {
-        console.log("in get audio")
         let currentWord;
         let currentAudio;
         const trapDoor = process.env.PUBLIC_URL;
@@ -43,16 +42,18 @@ class VocabQuestion extends Component {
             }
 
         }
-        console.log('current audio : ' + currentAudio);
+        console.log('current audio prompt: ' + currentAudio);
         return currentAudio;
     }
 
-    handleDataset(newDataset) {
+   async handleDataset(newDataset) {
         this.setState({
             data: questionsData[newDataset],
-            dataset: newDataset
+            dataset: newDataset,
+
         })
-        alert("new state dataset : " + this.state.dataset);
+        await this.mapArray();
+        // alert("new state dataset : " + this.state.dataset);
     }
 
     handleProgress(percentage) {
@@ -69,18 +70,35 @@ class VocabQuestion extends Component {
 
     mapArray() {
         
-        const arrayObj = this.state.data.answers.map(obj => obj);
-        let shuffledObjArray = [{}];
+        const { answers } = this.state.data;
+        let shuffledArray = [];
+        let tempArray = [];
+        let target = '';
 
-        shuffledObjArray = this.shuffleArray(arrayObj)
+        shuffledArray = this.shuffleArray(answers)
 
         
+        // setup simple words array pulling from shuffled array
+        for(var index in shuffledArray) {
+            tempArray.push(shuffledArray[index].word);
+            console.log("temp array : " + tempArray)
+        }
+
+        for(var i in shuffledArray) {
+            if(shuffledArray[i].correct === true) {
+                target = shuffledArray[i].word
+            }
+        }
 
         this.setState({
-            answersObj: shuffledObjArray
+            answersObj: shuffledArray,
+            wordsArray: tempArray,
+            target: target
+            
         })
 
-        return shuffledObjArray;
+
+        return shuffledArray;
     }
 
 
@@ -105,6 +123,7 @@ class VocabQuestion extends Component {
 async componentDidMount() {
     await this.mapArray();
     console.log("finally : " + JSON.stringify(this.state.answersObj))
+    console.log(" words array async" +  JSON.stringify(this.state.wordsArray))
 }
    
 
@@ -128,23 +147,26 @@ async componentDidMount() {
                         Need to swap out the temp arrayObj for 
                         questionsData object at index [state.dataset]
                     */}
-                    {this.state.tempArray.map((value, index) => {
+                    {this.state.wordsArray.map((value, index) => {
                         return (
                             <div className="flexItem" key={index}>
                                 <VocabItem 
                                     value={index} 
-                                    questionsData={questionsData}
+                                    // questionsData={questionsData}
                                     handleDataset={this.handleDataset}
                                     dataset={this.state.dataset}
                                     percentage={this.state.percentage}
                                     handleProgress={this.handleProgress}
-                                    currentDatasetData={questionsData[this.state.dataset]}
+                                    // currentDatasetData={questionsData[this.state.dataset]}
+                                    answersObj={this.state.answersObj}
+                                    wordsArray={this.state.wordsArray}
+                                    target={this.state.target}
                                     />
                             </div>)
                     })}
                 {/* </ul> */}
                 </div>
-                <ProgressBar className="progressBar" percentage={this.state.percentage}/>
+                <ProgressBar className="progress-bar" percentage={this.state.percentage}/>
             </div>
         )
     }

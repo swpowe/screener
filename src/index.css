@@ -34,7 +34,8 @@ code {
   /* for auto to work, icons need to be the same size */
   height: 250px;
   /* border: 10px solid blue; */
-  
+  margin-bottom: 100px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   
 }
 
@@ -42,7 +43,9 @@ code {
   background-color: white;
   width: 100%;
   height: auto;
+  max-height: 245px;
   object-fit: scale-down;
+  
 }
 
 .imageButtonClicked {
@@ -58,6 +61,7 @@ code {
   width: 350px;
   border-radius: 50px;
   border: 1px solid #333;
+  margin: 25px;
 }
 
 .filler {
@@ -69,5 +73,9 @@ code {
 
 button {
   all: unset
+}
+.progress-bar-text {
+  text-align: left;
+  margin: 25px;
 }
 
