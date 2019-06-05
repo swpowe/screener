@@ -14,7 +14,7 @@ class VocabItem extends Component {
     }
 
     myAlert() {
-        var clickedWord = this.props.currentDatasetData.answers[this.props.value -1];
+        var clickedWord = this.props.currentDatasetData.answers[this.props.value];
         console.log(clickedWord.word);
         console.log(this.props.value);
 
@@ -78,7 +78,7 @@ class VocabItem extends Component {
                         // replace quizQuestions[this.props.dataset] with props passing the current dataset
                         className={this.state.className}
                         // onClick={this.myFunc}
-                        src={this.props.currentDatasetData.answers[this.props.value - 1].image} alt=""
+                        src={this.props.currentDatasetData.answers[this.props.value].image} alt=""
                     />
                 </button>
             </div>

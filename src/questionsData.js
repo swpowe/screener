@@ -1,9 +1,12 @@
+import VocabItem from "./components/VocabItem";
+
 const trapDoor = process.env.PUBLIC_URL;
 const path = '/Assets/Art/Icons/';
 
 
 var quizQuestions = [
-    {
+    {   
+        type: 'Vocab',
         dataSet: 0,
         answers: [
             {
@@ -23,7 +26,8 @@ var quizQuestions = [
             }
         ]
     },
-    {
+    {   
+        type: 'Vocab',
         dataSet: 1,
         answers: [
             {
@@ -43,7 +47,7 @@ var quizQuestions = [
             }
         ]
     },
-    {
+    {   type: 'Vocab',
         dataSet: 3,
         answers: [
             {
@@ -64,6 +68,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 4,
         answers: [
             {
@@ -84,6 +89,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 5,
         answers: [
             {
@@ -104,6 +110,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 6,
         answers: [
             {
@@ -124,6 +131,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 7,
         answers: [
             {
@@ -144,6 +152,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 8,
         answers: [
             {
@@ -164,6 +173,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 9,
         answers: [
             {
@@ -184,6 +194,7 @@ var quizQuestions = [
         ]
     },
     {
+        type: 'Vocab',
         dataSet: 10,
         answers: [
             {
