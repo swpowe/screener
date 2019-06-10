@@ -5,6 +5,9 @@ import ProgressBar from './ProgressBar';
 import questionsData from '../questionsData';
 import quizQuestions from '../questionsData';
 
+import tap from '../Assets/Audio/tap.mp3';
+import teacher from '../Assets/Audio/teacher.mp3';
+
 class VocabQuestion extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +16,8 @@ class VocabQuestion extends Component {
         this.getCurrentAudio = this.getCurrentAudio.bind(this);
         this.mapArray = this.mapArray.bind(this);
         this.shuffleArray = this.shuffleArray.bind(this); 
+        this.nextSection = this.nextSection.bind(this);
+        this.playAudioSeq = this.playAudioSeq.bind(this);
     }
     state = {
         answersObj: [],
@@ -24,27 +29,65 @@ class VocabQuestion extends Component {
         percentage: 0,
         // highlight: {border: "10px solid white;"}
         
-        wordsArray: []
+        wordsArray: [],
+        level: 1,
+        section: 1,
+        playAudio: true
     }
 
 
     
 
     getCurrentAudio() {
-        let currentWord;
-        let currentAudio;
         const trapDoor = process.env.PUBLIC_URL;
         const path = '/Assets/Audio/';
-        for(var i = 0; i < this.state.data.answers.length; i++) {
-            if(this.state.data.answers[i].correct === true) {
-                currentWord = this.state.data.answers[i].word;
-                currentAudio = trapDoor + path + currentWord + '.mp3';
+
+        let currentWord;
+        let currentAudio;
+
+            for(var i = 0; i < this.state.data.answers.length; i++) {
+                if(this.state.data.answers[i].correct === true) {
+                    currentWord = this.state.data.answers[i].word;
+                    currentAudio = trapDoor + path + currentWord + '.mp3';
+                }
             }
 
-        }
         console.log('current audio prompt: ' + currentAudio);
         return currentAudio;
     }
+
+    playAudioSeq() {
+        // alert('audio finished. in play audio seq');
+        // let audioContainer = document.getElementById("audioContainer");
+        // audioContainer.play();
+        // let audio = this.getCurrentAudio();
+        // console.log("current audio in playSeq : " + audio)
+
+        // return(
+        //     <div>
+        //         <audio src={process.env.PUBLIC_URL + audio} autoPlay />
+        //     </div>
+        // )
+        console.log('play audio called');
+        let audio = document.createElement('audio');
+        let audio2 = document.createElement('audio');
+
+        audio.src = tap;
+        audio2.src = this.getCurrentAudio();
+        audio.play();
+       audio.onended = () => {
+           
+           audio2.play();
+       };
+       this.setState({
+           playAudio: false
+       })
+       
+
+        
+        
+    }
+
 
    async handleDataset(newDataset) {
         this.setState({
@@ -57,14 +100,41 @@ class VocabQuestion extends Component {
     }
 
     handleProgress(percentage) {
-        if(this.state.percentage === 100) return;
-        this.setState({
-            percentage: percentage
-        })
+        if(this.state.percentage === 100) {
+            this.nextSection();
+        } else {
+            this.setState({
+                percentage: percentage
+            })
+        }
     }
 
     handleHighlight() {
 
+    }
+
+    nextSection() {
+        alert("Next Section Called");
+        
+        
+        if(this.state.section === 2) {
+            this.setState({
+                section: 1,
+                level: 2,
+                percentage: 0
+            })    
+        }else {
+            this.setState({
+                percentage: 0,
+                section: 2
+            })
+        }
+
+        
+
+        console.log("level : " + this.state.level);
+        console.log("section : " + this.state.section);
+        
     }
   
 
@@ -93,7 +163,8 @@ class VocabQuestion extends Component {
         this.setState({
             answersObj: shuffledArray,
             wordsArray: tempArray,
-            target: target
+            target: target,
+            playAudio: true
             
         })
 
@@ -133,12 +204,15 @@ async componentDidMount() {
             //     backgroundColor: "aqua", width: "600px", minHeight: "200px"
             // }}>
             <div>
+                 {this.state.playAudio ? this.playAudioSeq() : console.log("audio not playing")}
                 {/* 
                     Play audio on load 
                     Need to swap this for a prop that says which question audio
                 */}
                 {/* {this.mapArray()} */}
-                <audio src={this.getCurrentAudio()} autoPlay/>
+               
+                {/* <audio id="prompt" src={this.getCurrentAudio()} autoPlay onEnded={this.playAudioSeq}/> */}
+                
                 {/* {this.getCurrentAudio()}; */}
                 {/* {this.setTemparrayObj()} */}
                 <div className="flexContainer">
@@ -161,12 +235,18 @@ async componentDidMount() {
                                     answersObj={this.state.answersObj}
                                     wordsArray={this.state.wordsArray}
                                     target={this.state.target}
+                                    nextSection={this.nextSection}
                                     />
                             </div>)
                     })}
                 {/* </ul> */}
                 </div>
-                <ProgressBar className="progress-bar" percentage={this.state.percentage}/>
+                <ProgressBar 
+                    className="progress-bar" 
+                    percentage={this.state.percentage}
+                    level={this.state.level}
+                    section={this.state.section}
+                />
             </div>
         )
     }

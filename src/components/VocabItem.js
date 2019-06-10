@@ -7,6 +7,7 @@ class VocabItem extends Component {
         this.myFunc = this.myFunc.bind(this);
         this.handleHighlightAdd = this.handleHighlightAdd.bind(this);
         this.handleHighlightRemove = this.handleHighlightRemove.bind(this);
+        this.checkSection = this.checkSection.bind(this);
     }
     state = {
         className: "imageButton",
@@ -16,10 +17,10 @@ class VocabItem extends Component {
 
     myAlert() {
         var clickedWord = this.props.answersObj[this.props.value];
+        
         console.log("clicked word:" + clickedWord.word);
 
-        // Advance Progress Menu
-        this.props.handleProgress(this.props.percentage + 10);
+        
         this.setState({
             className: "imageButton",
         })
@@ -28,14 +29,16 @@ class VocabItem extends Component {
         // Check to see if the clicked was correct or not
         if(clickedWord.correct === true) {
             // a call back to the parent vocab question to advance the dataset
-            console.log("RS_dataset " + this.props.dataset + " correct.");
+            console.log("RS_dataset " + (this.props.dataset + 1) + " correct.");
             console.log("RS_correct word clicked : " + this.props.target)
         }else {
-            console.log("RS_dataset " + this.props.dataset + " incorrect.")
+            console.log("RS_dataset " + (this.props.dataset + 1) + " incorrect.")
             console.log("RS_clicked : " + clickedWord.word);
             console.log("RS_correct word is : " + this.props.target)
         }
         this.props.handleDataset(this.props.dataset + 1);
+        
+        this.checkSection();
     }
 
     myFunc() {
@@ -56,6 +59,9 @@ class VocabItem extends Component {
     // Add the highlight around the object that was clicked
     // and hold for 1sec
     handleHighlightAdd() {
+        // Advance Progress Menu
+        this.props.handleProgress(this.props.percentage + 10);
+
         this.setState({
             highlight: {outline: "5px solid yellow"}
         })
@@ -70,6 +76,14 @@ class VocabItem extends Component {
         // need to refactor the "alert" as it's currently delaying the logs which may not matter
         //  but the delay is for the highlight and next question.
         this.myAlert();
+    }
+
+    checkSection() {
+        console.log("SEC_check for section logic")
+        if(this.props.dataset === 10) {
+            console.log("SEC_Last question in section.")
+            this.props.nextSection();
+        }
     }
 
     // did mount only runs once

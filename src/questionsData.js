@@ -7,7 +7,7 @@ const path = '/Assets/Art/Icons/';
 var quizQuestions = [
     {   
         type: 'Vocab',
-        dataSet: 0,
+        dataSet: 1,
         answers: [
             {
                 word: "teacher",
@@ -28,7 +28,7 @@ var quizQuestions = [
     },
     {   
         type: 'Vocab',
-        dataSet: 1,
+        dataSet: 2,
         answers: [
             {
                 word: "ball",
@@ -211,6 +211,216 @@ var quizQuestions = [
                 word: "desk",
                 correct: false,
                 image: trapDoor + path + 'desk.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 1,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 2,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 3,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 4,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 5,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 6,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 7,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 8,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 9,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
+            }
+        ]
+    },
+    {
+        type: 'Listening',
+        dataSet: 10,
+        answers: [
+            {
+                word: "bed",
+                correct: true,
+                image: trapDoor + path + 'bed.jpg'
+            },
+            {
+                word: "mom",
+                correct: false,
+                image: trapDoor + path + 'mom.svg'
+            },
+            {
+                word: "shirt",
+                correct: false,
+                image: trapDoor + path + 'shirt.jpg'
             }
         ]
     }

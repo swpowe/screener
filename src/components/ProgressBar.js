@@ -4,8 +4,8 @@ const ProgressBar = (props) => {
     return (
         <div >
           <div className="progress-bar-text">
-          <h1>Level 1 Screener</h1>
-          <h2>Section 1 Progress:</h2>
+          <h1>Level {props.level} Screener</h1>
+          <h2>Section {props.section} Progress:</h2>
           </div>
           <div className="progress-bar">
             <Filler percentage={props.percentage} />

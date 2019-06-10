@@ -41,6 +41,10 @@ class Question extends Component {
         return audioPath;
     }
 
+    playAudioSeq() {
+        alert("audio ended. in playAudioSeq.")
+    }
+
     handleDataset() {
         this.setState({
             data: questionsData[this.state.dataset ++],
@@ -61,7 +65,7 @@ class Question extends Component {
         return(
             <div>
                 {/* get the audio prompt for the current quesiton */}
-                <audio src={this.getAudioPrompt()} autoPlay />
+                <audio src={this.getAudioPrompt()} autoPlay onEnded={this.playAudioSeq()}/>
                 <div className="flexContainer">
                 {/* map function */}
                     return(
