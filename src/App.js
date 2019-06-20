@@ -1,5 +1,6 @@
 import React from 'react';
 import VocabQuestion from './components/VocabQuestion';
+import StudentInfo from './components/StudentInfo';
 
 import logo from './Assets/Art/Logo.png';
 import header_bottom from './Assets/Art/header_bottom.png';
@@ -31,7 +32,7 @@ function App() {
         <img src={header_bottom} className="Header-Bottom-Bar" alt="header_bottom" />
         
       </header>
-      
+      {/* <StudentInfo /> */}
       <VocabQuestion />
     </div>
   );
